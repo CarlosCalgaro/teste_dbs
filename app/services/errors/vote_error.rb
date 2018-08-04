@@ -1,0 +1,6 @@
+
+
+
+class VoteError < StandardError
+    
+end

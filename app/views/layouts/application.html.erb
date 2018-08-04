@@ -6,11 +6,66 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <header class="masthead mb-auto">     
+      <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+        <li>
+          <%= link_to "Sair", destroy_user_session_path %>
+        </li>
+        <li><a href="#!">two</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">three</a></li>
+      </ul>
+      <nav>
+        <div class="nav-wrapper">
+          <% unless current_user.nil? %>
+          <ul class="left hide-on-med-and-down">
+            <li>
+              <h4>Bem vindo <%= current_user.email%></h4>
+            </li>
+          </ul>
+          <% end %>
+          <ul class="right">
+            <li><%= link_to "Index", root_path%></li>
+            <li><%= link_to "Restaurantes", restaurants_path%></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Sessão<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+        </div>
+      </nav>
+        
+     
+     </header>
+  
+  <div class="container">
+    <div class="section">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+    <br><br>
+  </div>
+
+
+
+
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <div class="">
+            Feito por   <a class="text-lighten-3">Carlos A. Calgaro Filho</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   </body>
 </html>

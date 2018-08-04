@@ -1,23 +1,34 @@
 class VotesController < ApplicationController
 
+    def index
+        @restaurant = Restaurant.first
+    end
+
+    def new
+        @vote = Vote.new
+        @restaurants = Restaurant.all
+    end
 
     def create  
-        @vote = Vote.new(restaurant_params)
-
+        @vote = Vote.new(vote_params)
         respond_to do |format|
-          if @restaurant.save
-            format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
-            format.json { render :show, status: :created, location: @restaurant }
+          if !can_vote?(current_user)
+            format.html { redirect_to votes_path, alert: 'Você ja votou hoje' }
+          elsif @vote.save
+            format.html { redirect_to votes_path, notice: 'Você votou' }
           else
             format.html { render :new }
-            format.json { render json: @restaurant.errors, status: :unprocessable_entity }
           end
         end
     end
 
     private
-    
+
     def vote_params
         params.require(:vote).permit(:restaurant_id)
+    end
+
+    def can_vote?(user)
+        Vote.all.where(user_id: user.id, time: Time.now).count > 0 ? false : true
     end
 end

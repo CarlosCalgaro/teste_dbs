@@ -1,0 +1,13 @@
+
+<div class="row">
+    <h5>Restaurante com mais votos hoje é</h5>
+</div>
+<div class="row">
+
+    <h3><%= @restaurant.name %></h3>
+</div>
+<div class="row">
+    <%= link_to "Clique aqui para realizar seu voto", new_vote_path, class: "pink darken-1 waves-effect waves-light btn" %>
+</div>
+
+

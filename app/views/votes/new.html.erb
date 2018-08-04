@@ -1,0 +1,9 @@
+
+
+
+<%= form_for @vote, url: {action: "create"} do |f| %>
+
+  <%= f.select(:restaurant_id, @restaurants.all.collect {|rest| [rest.name, rest.id]})%>
+  <%= f.submit "Votar", class:"waves-effect waves-light btn" %>
+<% end %>
+

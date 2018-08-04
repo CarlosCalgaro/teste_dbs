@@ -13,6 +13,17 @@
 
 //= require rails-ujs
 //= require jquery
-//= require bootstrap-sprockets
+//= require materialize-sprockets
+
+
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+        
+$( document ).ready(function(){
+    $(".dropdown-trigger").dropdown();
+})
+      
